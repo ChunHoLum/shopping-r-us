@@ -1,0 +1,11 @@
+{
+  "name": "shopping-r-us",
+  "version": "1.0.0",
+  "description": "checkout system",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Lum Chun Ho",
+  "license": "ISC"
+}

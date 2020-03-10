@@ -4,7 +4,6 @@ const figlet = require('figlet');
 
 const { displayProducts } = require('../product/show-product');
 const { displayDiscountList } = require('../discount/show-discount');
-
 module.exports = {
 
   displayMainMenu: () => {
@@ -33,8 +32,8 @@ module.exports = {
       })
     .addItem(
       'Update Discount',
-      function() {
-          console.log('1');
+      () => {
+        displayUpdateDiscountMenu();
       })
     .addDelimiter('-', 40)
     .disableDefaultHeader()
@@ -53,6 +52,7 @@ module.exports = {
     .start()
   } 
 }
-
+// To avoid collision of circular dependency, the import section should put below the code logic
 const { displayCheckOutMenu } = require('../checkout/checkout-menu');
 const { displayUpdateProductMenu } = require('../product/update-product');
+const { displayUpdateDiscountMenu } = require('../discount/update-discount');

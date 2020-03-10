@@ -1,7 +1,8 @@
 const menu = require('node-menu');
 const { getProductItems } = require('../_db/products.db');
-const { getCart, updateCart, displayCart } = require('../cart/cart');
-
+const { getCart, addToCart, displayCart, clearCart } = require('../cart/cart');
+const { checkoutApply } = require('../checkout/checkout-apply');
+const { getActiveDiscountList } = require('../_db/discount.db');
 
 module.exports = {
 
@@ -13,7 +14,7 @@ module.exports = {
       menu.addItem(
         item.Name,
         () => {
-          updateCart(item.SKU)
+          addToCart(item.SKU)
         }
       )
     });
@@ -28,8 +29,8 @@ module.exports = {
     .addItem(
       'Check Out',
       () => {
-        menu.resetMenu();
-        displayMainMenu();
+        checkoutApply(getCart(), getActiveDiscountList());
+        clearCart();
       }
     )
     .disableDefaultHeader()

@@ -1,11 +1,3 @@
-const {updateCart} = require('./cart/cart');
+const {getCart} = require('./cart/cart');
 
-// updateCart("ipd");
-// updateCart("mbp");
-// updateCart("atv");
-// updateCart("vga");
-// updateCart("mbp");
-updateCart("mbp");
-updateCart("mbp");
-updateCart("mbp");
-updateCart("mbp");
+console.log(getCart());

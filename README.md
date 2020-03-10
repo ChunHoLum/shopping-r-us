@@ -17,7 +17,7 @@ For example ( update Super Ipad to $550" ) :
 ```
 ![Image](https://github.com/ChunHoLum/shopping-r-us/blob/master/screenshots/updateprodcuts.png)	
 
-**Update Discount ** <br>
+__Update Discount__ <br>
 Users can update the discount element by input element number and new value. <br>
 For example ( update Discount Name to "New Discount Name" ) :
 ```

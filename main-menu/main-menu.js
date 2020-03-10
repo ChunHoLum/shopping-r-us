@@ -1,12 +1,16 @@
+#!/usr/bin/env node
+// Requiring dependencies
 const menu = require('node-menu');
 const chalk = require('chalk');
 const figlet = require('figlet');
-
+// Customize import function
 const { displayProducts } = require('../product/show-product');
 const { displayDiscountList } = require('../discount/show-discount');
+// Exporting the functions
 module.exports = {
-
+  // Display main menu function
   displayMainMenu: () => {
+    // Print menu
     menu.addDelimiter('-', 40, 'Main Menu')
     .addItem(
       'Check Out',
@@ -53,7 +57,7 @@ module.exports = {
     .start()
   } 
 }
-// To avoid collision of circular dependency, the import section should put below the code logic
+// To avoid collision of circular dependency, the import menu should put below the code logic
 const { displayCheckOutMenu } = require('../checkout/checkout-menu');
 const { displayUpdateProductMenu } = require('../product/update-product');
 const { displayUpdateDiscountMenu } = require('../discount/update-discount');

@@ -1,10 +1,15 @@
+#!/usr/bin/env node
+// Customize import function
 const { X_FOR_Y_DEAL_DISCOUNT, BULK_DISCOUNT, BUNDLE_DISCOUNT} = require('./discountType.db');
 const { getProductItems } = require('../_db/products.db');
+// Exporting the functions
 
 module.exports = {
+  // Retrival of discount list
   getDiscountList: () =>{
     return discountList;
   },
+  // Retrival of active discount list
   getActiveDiscountList: () =>{
     activeDiscountList = [];
     discountList.forEach(discount => {
@@ -14,6 +19,7 @@ module.exports = {
     })
     return activeDiscountList;
   },
+  // Retrival of inactive discount list
   getInActiveDiscountList: () =>{
     inActiveDiscountList = [];
     discountList.forEach(discount => {
@@ -23,6 +29,7 @@ module.exports = {
     })
     return inActiveDiscountList;
   },
+  // Update the discount list
   updateDiscount: (discountID, editField, editValue) => {
     discountList.forEach(discount => {
       if (discount.discountID == discountID){
@@ -31,6 +38,7 @@ module.exports = {
       }
     })
   },
+  // xForYDealDiscountRule
   xForYDealDiscountRule: (sku, buyItemQuantity, payItemQuantity, cart) => {
 
     if (payItemQuantity == 0 || payItemQuantity > buyItemQuantity ) return;
@@ -47,10 +55,12 @@ module.exports = {
         };
       })
     } catch (err){
+      // error checking
       // console.log("xForYDealDiscountRule not applicable")
     }
 
   }, 
+  // bulkDiscountRule
   bulkDiscountRule: (sku, buyItemQuantity, newDropPrice, cart) => {
 
     try{
@@ -63,10 +73,13 @@ module.exports = {
         })
       }
     } catch (err){
+      // error checking
       // console.log("bulkDiscountRule not applicable")
     }
   },
+  // bundleDiscountRule
   bundleDiscountRule: (buySKU, freeSKU, buyItemQuantity, freeItemQuantity, cart) => {
+    
     try{
       const buySkuCount = cart.filter(cartItem => cartItem.item == buySKU)[0].quantity;
       const freeSkuCount = cart.filter(cartItem => cartItem.item == freeSKU)[0].quantity;
@@ -84,11 +97,12 @@ module.exports = {
       })
       
     } catch (err) {
+      // error checking
       // console.log("bundleDiscountRule not applicable")
     }
   }
 };
-
+// Storage of discount list
 let discountList = [
   {
     "discountID": 1,
@@ -120,13 +134,12 @@ let discountList = [
   },
   {
     "discountID": 4,
-    "discountName": "inactive testing discount",
+    "discountName": "Inactive Testing discount",
     "discountType": BUNDLE_DISCOUNT,
     "buySKU": "mbp",
     "freeSKU": "vga",
     "buyItemQuantity": 1,
     "freeItemQuantity": 1,
     "active": false
-  },
-
+  }
 ]

@@ -1,11 +1,14 @@
+#!/usr/bin/env node
+// Requiring dependencies
 const menu = require('node-menu');
+// Customize import function
 const { updateDiscount } = require('../_db/discount.db');
-
+// Exporting the functions
 module.exports = {
   displayUpdateDetailDiscountMenu: (discount) => {
-
+    // Get the specific discount to array object
     const discountEntries = Object.entries(discount);
-
+    // Print Menu
     menu.addDelimiter('-', 40, discount.discountName)
     .disableDefaultHeader()
     .disableDefaultPrompt()
@@ -34,5 +37,5 @@ module.exports = {
     .start()
   }
 }
-
+// To avoid collision of circular dependency, the import menu should put below the code logic
 const { displayUpdateDiscountMenu } = require('./update-discount');

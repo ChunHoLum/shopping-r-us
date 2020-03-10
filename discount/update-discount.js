@@ -1,16 +1,19 @@
+#!/usr/bin/env node
+// Requiring dependencies
 const menu = require('node-menu');
-const { getProductItems, updateProductItems } = require('../_db/products.db');
-const { getDiscountList, getActiveDiscountList, getInActiveDiscountList } = require('../_db/discount.db');
-
+// Customize import function
+const { getActiveDiscountList, getInActiveDiscountList } = require('../_db/discount.db');
+// Exporting the functions
 module.exports = {
   displayUpdateDiscountMenu: () => {
+    // Print menu
     menu.addDelimiter('-', 40, 'Active')
     .disableDefaultHeader()
     .disableDefaultPrompt()
     .customPrompt(function() {
       process.stdout.write("\n");
     })
-
+    // Add menu item for each active discount 
     const activeDiscountList = getActiveDiscountList();
     activeDiscountList.forEach(discount => {
       menu.addItem(
@@ -22,7 +25,7 @@ module.exports = {
       )
     });
     menu.addDelimiter('-', 40, 'Inactive')
-
+    // Add menu item for each inactive discount 
     const inActiveDiscountList = getInActiveDiscountList();
     inActiveDiscountList.forEach(discount => {
       menu.addItem(
@@ -35,12 +38,6 @@ module.exports = {
     });
     menu.addDelimiter('-', 40)
     .addItem(
-      'Check Current Price',
-      () => {
-
-      }
-    )
-    .addItem(
       'Back to Main Menu',
       () => {
         menu.resetMenu();
@@ -50,6 +47,6 @@ module.exports = {
     .start()
   }
 }
-
+// To avoid collision of circular dependency, the import menu should put below the code logic
 const { displayUpdateDetailDiscountMenu } = require('./update-detail-discount');
 const { displayMainMenu } = require('../main-menu/main-menu');

@@ -1,8 +1,10 @@
+#!/usr/bin/env node
+// Requiring dependencies
 const menu = require('node-menu');
-const { getProductItems, updateProductItems } = require('../_db/products.db');
+// Customize import function
 const { displayProducts } = require('./show-product');
-const clear = require('clear');
-
+const { getProductItems, updateProductItems } = require('../_db/products.db');
+// Exporting the functions
 module.exports = {
   displayUpdateProductMenu: () => {
     menu.addDelimiter('-', 40, 'Update Product Menu')
@@ -11,9 +13,10 @@ module.exports = {
     .customPrompt(function() {
       process.stdout.write("\nUpdate the price by input item number and new price with a space. For example: >> 1 550 to set Super Ipad to $550");
     })
-
-    const productitems = getProductItems();
-    productitems.forEach(item => {
+    // List the product item that call the update function when trigger
+    const productItems = getProductItems();
+    productItems.forEach(item => {
+      // Print menu
       menu.addItem(
         item.Name,
         (newPrice) => {
@@ -49,5 +52,5 @@ module.exports = {
     .start()
   }
 }
-
+// To avoid collision of circular dependency, the import menu should put below the code logic
 const { displayMainMenu } = require('../main-menu/main-menu');

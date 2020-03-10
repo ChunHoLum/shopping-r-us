@@ -1,7 +1,10 @@
+#!/usr/bin/env node
 module.exports = {
+  // Retrival of product items
   getProductItems: () =>{
     return productitems;
   },
+  // Update product items
   updateProductItems: (item, newPrice) => {
     productitems.forEach(product => {
       if (product.SKU == item){
@@ -11,7 +14,7 @@ module.exports = {
     })
   }
 };
-
+// Storage of product items
 let productitems = [
   {
     "SKU": "ipd",

@@ -33,6 +33,7 @@ module.exports = {
     .addItem(
       'Update Discount',
       () => {
+        menu.resetMenu();
         displayUpdateDiscountMenu();
       })
     .addDelimiter('-', 40)

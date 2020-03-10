@@ -14,11 +14,20 @@ module.exports = {
     })
     return activeDiscountList;
   },
-  updateDiscount: (item, newPrice) => {
-    productitems.forEach(product => {
-      if (product.SKU == item){
-        product.Price = newPrice;
-        console.log("Updated item")
+  getInActiveDiscountList: () =>{
+    inActiveDiscountList = [];
+    discountList.forEach(discount => {
+      if(!discount.active){
+        inActiveDiscountList.push(discount);
+      }
+    })
+    return inActiveDiscountList;
+  },
+  updateDiscount: (discountID, editField, editValue) => {
+    discountList.forEach(discount => {
+      if (discount.discountID == discountID){
+        discount[editField] = editValue;
+        console.log("Updated Discount")
       }
     })
   },
@@ -82,7 +91,7 @@ module.exports = {
 
 let discountList = [
   {
-    "discountID:": 1,
+    "discountID": 1,
     "discountName": "Buy 3 for 2 deal on Apple TVs",
     "discountType": X_FOR_Y_DEAL_DISCOUNT,
     "SKU": "atv",
@@ -91,7 +100,7 @@ let discountList = [
     "active": true
   },
   {
-    "discountID:": 2,
+    "discountID": 2,
     "discountName": "The price of Super iPad drop to $499.99 each when buy more than 4",
     "discountType": BULK_DISCOUNT,
     "SKU": "ipd",
@@ -100,7 +109,7 @@ let discountList = [
     "active": true
   },
   {
-    "discountID:": 3,
+    "discountID": 3,
     "discountName": "VGA adapter free of charge with every MacBook Pro sold",
     "discountType": BUNDLE_DISCOUNT,
     "buySKU": "mbp",
@@ -108,6 +117,16 @@ let discountList = [
     "buyItemQuantity": 1,
     "freeItemQuantity": 1,
     "active": true
+  },
+  {
+    "discountID": 4,
+    "discountName": "inactive testing discount",
+    "discountType": BUNDLE_DISCOUNT,
+    "buySKU": "mbp",
+    "freeSKU": "vga",
+    "buyItemQuantity": 1,
+    "freeItemQuantity": 1,
+    "active": false
   },
 
 ]

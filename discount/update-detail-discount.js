@@ -12,6 +12,9 @@ module.exports = {
     menu.addDelimiter('-', 40, discount.discountName)
     .disableDefaultHeader()
     .disableDefaultPrompt()
+    .customPrompt(function() {
+      process.stdout.write("\nUpdate the discount element by input element number and new value. For example: >> 1 10 to set the Discount ID to 10");
+    });
     discountEntries.forEach(entry => {
       menu.addItem(
         entry[0],

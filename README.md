@@ -48,4 +48,4 @@ For example ( update Discount Name to "New Discount Name" ) :
 ![Image](https://github.com/ChunHoLum/shopping-r-us/blob/master/screenshots/updatediscount2.png)	
 
 ## Remarks
-For demo purpose, all the products item and discount setting will restore after program terminated.
+For demo purposes, all product and discount settings will be restored upon termination of the program.

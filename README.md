@@ -8,6 +8,12 @@ git clone https://github.com/ChunHoLum/shopping-r-us.git
 cd shopping-r-us
 npm install
 ```
+## Getting Staterd
+```
+npm run start 
+// or 
+node index.js
+```
 ## Example scenarios
 **Scenario 1** 
 ```
